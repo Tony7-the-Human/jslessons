@@ -76,4 +76,78 @@ window.addEventListener("DOMContentLoaded", () => {
 	}
 
 	setClock(".timer", timeEnd);
+
+	// modal
+
+	/* ===================== Код из урока № 33 (Модальные окна) ===================== */ 
+
+	// const triggerBtn = document.querySelectorAll('[data-modal]');
+	// const modal = document.querySelector('.modal');
+	// const modalCloseBtn = document.querySelector('.modal__close');
+
+	// triggerBtn.forEach(btn => {
+	// 	btn.addEventListener('click', ()=>{
+	// 		modal.classList.remove('hide');
+	// 		modal.classList.add('show');
+	// 		document.body.style.overflow = 'hidden';
+	// 	})
+	// });
+
+	// modalCloseBtn.addEventListener('click', (e)=>{
+	// 	modal.classList.add('hide');
+	// 	modal.classList.remove('show');
+	// 	document.body.style.overflow = '';
+	// })
+
+	// modal.addEventListener('click', (e)=>{
+	// 	if (e.target == modal){
+	// 		modal.classList.add('hide');
+	// 	modal.classList.remove('show');
+	// 	document.body.style.overflow = '';
+	// 	}
+	// })
+
+	// document.addEventListener('keydown', (e)=>{
+	// 	if (e.key == 'Escape'){
+	// 		modal.classList.add('hide');
+	// 	modal.classList.remove('show');
+	// 	document.body.style.overflow = '';
+	// 	}
+	// });
+
+
+
+	 /* ===================== Оптимизация кода ===================== */ 
+	// Объявление переменных 
+	const triggerBtn = document.querySelectorAll('[data-modal]');
+	const modal = document.querySelector('.modal');
+	const modalCloseBtn = document.querySelector('.modal__close');
+
+	// Прослушка событий
+	triggerBtn.forEach(btn => {
+		btn.addEventListener('click', openModal)
+	});
+	modal.addEventListener('click', (e)=>{
+		if (e.target == modal || e.target == modalCloseBtn){
+			closeModal()
+		} 
+	});
+	document.addEventListener('keydown', (e)=>{
+		if (e.key == 'Escape'){
+			closeModal()
+		}
+	});
+	
+	function openModal() {
+		modal.classList.remove('hide');
+		modal.classList.add('show');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal(){
+		modal.classList.add('hide');
+		modal.classList.remove('show');
+		document.body.style.overflow = '';
+	}
+	
 });

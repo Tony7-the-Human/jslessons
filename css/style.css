@@ -605,3 +605,16 @@ a {
 	width: 280px;
 	margin: 0 auto;
 }
+
+
+/* .hidden {
+	display: none;
+	overflow: hidden;
+} */
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
