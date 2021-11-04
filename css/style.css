@@ -606,6 +606,14 @@ a {
 	margin: 0 auto;
 }
 
+<<<<<<< HEAD
+=======
+
+/* .hidden {
+	display: none;
+	overflow: hidden;
+} */
+>>>>>>> b13d12495d35fa7b082756fd70aaea07c7c96dac
 .show {
 	display: block;
 }
