@@ -77,33 +77,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	setClock(".timer", timeEnd);
 
-<<<<<<< HEAD
-	// modals
-
-	const btns = document.querySelectorAll(".btn");
-	const modal = document.querySelector(".modal");
-
-	btns.forEach((item) => {
-		item.addEventListener("click", openModal);
-	});
-
-	function openModal() {
-		modal.style.display = "block";
-	}
-
-	function closeModal() {
-		modal.style.display = "none";
-	}
-
-	modal.addEventListener("click", (event) => {
-		if (event.target.classList.contains("modal") || event.target.classList.contains("modal__close")) {
-			closeModal();
-		}
-	});
-=======
 	// modal
 
-	/* ===================== Код из урока № 33 (Модальные окна) ===================== */ 
+	/* ===================== Код из урока № 33 (Модальные окна) ===================== */
 
 	// const triggerBtn = document.querySelectorAll('[data-modal]');
 	// const modal = document.querySelector('.modal');
@@ -139,40 +115,81 @@ window.addEventListener("DOMContentLoaded", () => {
 	// 	}
 	// });
 
-
-
-	 /* ===================== Оптимизация кода ===================== */ 
-	// Объявление переменных 
-	const triggerBtn = document.querySelectorAll('[data-modal]');
-	const modal = document.querySelector('.modal');
-	const modalCloseBtn = document.querySelector('.modal__close');
+	/* ===================== Оптимизация кода ===================== */
+	// Объявление переменных
+	const triggerBtn = document.querySelectorAll("[data-modal]");
+	const modal = document.querySelector(".modal");
+	const modalCloseBtn = document.querySelector(".modal__close");
 
 	// Прослушка событий
-	triggerBtn.forEach(btn => {
-		btn.addEventListener('click', openModal)
+	triggerBtn.forEach((btn) => {
+		btn.addEventListener("click", openModal);
 	});
-	modal.addEventListener('click', (e)=>{
-		if (e.target == modal || e.target == modalCloseBtn){
-			closeModal()
-		} 
-	});
-	document.addEventListener('keydown', (e)=>{
-		if (e.key == 'Escape'){
-			closeModal()
+	modal.addEventListener("click", (e) => {
+		if (e.target == modal || e.target == modalCloseBtn) {
+			closeModal();
 		}
 	});
-	
+	document.addEventListener("keydown", (e) => {
+		if (e.key == "Escape") {
+			closeModal();
+		}
+	});
+
 	function openModal() {
-		modal.classList.remove('hide');
-		modal.classList.add('show');
-		document.body.style.overflow = 'hidden';
+		modal.classList.remove("hide");
+		modal.classList.add("show");
+		document.body.style.overflow = "hidden";
 	}
 
-	function closeModal(){
-		modal.classList.add('hide');
-		modal.classList.remove('show');
-		document.body.style.overflow = '';
+	function closeModal() {
+		modal.classList.add("hide");
+		modal.classList.remove("show");
+		document.body.style.overflow = "";
 	}
-	
->>>>>>> b13d12495d35fa7b082756fd70aaea07c7c96dac
+
+	// Slider
+
+	const slides = document.querySelectorAll(".offer__slide"),
+		prevBtn = document.querySelector(".offer__slider-prev"),
+		nextBtn = document.querySelector(".offer__slider-next"),
+		total = document.querySelector("#total"),
+		current = document.querySelector("#current");
+
+	let slideIndex = 1;
+
+	showSlides(slideIndex);
+	if (slides.length < 10) {
+		total.textContent = `0${slides.length}`;
+	} else {
+		total.textContent = slides.length;
+	}
+
+	function showSlides(n) {
+		if (n > slides.length) {
+			slideIndex = 1;
+		}
+		if (n < 1) {
+			slideIndex = slides.length;
+		}
+
+		slides.forEach((item) => item.classList.add("hide"));
+		slides[slideIndex - 1].classList.remove("hide");
+
+		if (slides.length < 10) {
+			current.textContent = `0${slideIndex}`;
+		} else {
+			current.textContent = slideIndex;
+		}
+	}
+
+	function plusSlides(n) {
+		showSlides((slideIndex += n));
+	}
+	prevBtn.addEventListener("click", () => {
+		plusSlides(-1);
+	});
+	nextBtn.addEventListener("click", () => {
+		plusSlides(1);
+	});
 });
